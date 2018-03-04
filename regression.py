@@ -47,7 +47,7 @@ print("a "+str(a))
 print("b1 "+str(b1))
 print("b2 "+str(b2))
 
-learning_rate = 0.1
+learning_rate = 0.2
 
 for i in range(2):
 	print("================================================================")
@@ -55,15 +55,16 @@ for i in range(2):
 	print("================================================================")
 	sumError = 0.0
 	for j in range(x1.shape[0]):
-		print("data ke= "+ str(j))
+		print("data ke= "+ str(j), end = " ; ")
 		output = a + (b1 * x1[j]) + (b2 * x2[j])
-		error = y[0] - output
+		error = y[j] - output
 		sumError = sumError + error**2
-		print(output)
+		print("error= "+ str(error), end = " ; ")
+		print("hasil_prediksi= "+ str(output))
 		#print(error)
-		new_a = a + (00000000000.1 * error)
-		new_b1 = b1 + (00000000000.1 * error * x1[j])
-		new_b2 = b2 + (00000000000.1 * error * x2[j])
+		new_a = a + (learning_rate * error)
+		new_b1 = b1 + (learning_rate * error * x1[j])
+		new_b2 = b2 + (learning_rate * error * x2[j])
 
 		a = new_a
 		b1 = new_b1

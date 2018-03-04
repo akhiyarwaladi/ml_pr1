@@ -4,7 +4,7 @@ def predict(row, weights):
 	activation = weights[0]
 	for i in range(len(row)-1):
 		activation += weights[i + 1] * row[i]
-	print (activation)
+	#print (activation)
 	return 1.0 if activation > 0.0 else 0.0
 
 # Estimate Perceptron weights using stochastic gradient descent
@@ -22,17 +22,18 @@ def train_weights(train, l_rate, n_epoch):
 		print("================================================================")
 		sum_error = 0.0
 		for row in train:
-			print("row data:"+str(row))
+			print("row data: "+str(row))
 			prediction = predict(row, weights)
+			print("prediction: "+str(prediction), end=" ")
 			error = row[-1] - prediction
-
+			print("error: " +str(error))
 			sum_error += error**2
 			# bobot tidak kita update karena soal tidak ada bobot, namun bias tetap ditampilkan di hasil tapi selalu 0					
 			#weights[0] = weights[0] + l_rate * error
 			for i in range(len(row)-1):
 				weights[i + 1] = weights[i + 1] + l_rate * error * row[i]
-			print(["bias", "w1", "w2", "w3"])
-			print(weights)
+			print(["w1", "w2", "w3"], end=" = ")
+			print(weights[1:])
 			print(" ")
 		print('>epoch=%d, lrate=%.3f, error=%.3f' % (epoch, l_rate, sum_error))
 		print("================================================================")
